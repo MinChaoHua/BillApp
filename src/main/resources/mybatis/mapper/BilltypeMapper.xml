@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bill.system.dao.BilltypeMapper">
+  <resultMap id="BaseResultMap" type="com.bill.system.entity.Billtype">
+    <id column="BilltypeId" jdbcType="INTEGER" property="billtypeid" />
+    <result column="BilltypeName" jdbcType="VARCHAR" property="billtypename" />
+    <result column="addTime" jdbcType="DATE" property="addtime" />
+    <result column="accountNumber" jdbcType="VARCHAR" property="accountnumber" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    BilltypeId, BilltypeName, addTime, accountNumber, memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from billtype
+    where BilltypeId = #{billtypeid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAllBillType"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from billtype
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from billtype
+    where BilltypeId = #{billtypeid,jdbcType=INTEGER}
+  </delete>
+
+
+  <insert id="insert" parameterType="com.bill.system.entity.Billtype">
+    insert into billtype (BilltypeId, BilltypeName, addTime, 
+      accountNumber, memo)
+    values (#{billtypeid,jdbcType=INTEGER}, #{billtypename,jdbcType=VARCHAR}, #{addtime,jdbcType=DATE}, 
+      #{accountnumber,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bill.system.entity.Billtype">
+    insert into billtype
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billtypeid != null">
+        BilltypeId,
+      </if>
+      <if test="billtypename != null">
+        BilltypeName,
+      </if>
+      <if test="addtime != null">
+        addTime,
+      </if>
+      <if test="accountnumber != null">
+        accountNumber,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billtypeid != null">
+        #{billtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="billtypename != null">
+        #{billtypename,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=DATE},
+      </if>
+      <if test="accountnumber != null">
+        #{accountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.bill.system.entity.Billtype">
+    update billtype
+    <set>
+      <if test="billtypename != null">
+        BilltypeName = #{billtypename,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        addTime = #{addtime,jdbcType=DATE},
+      </if>
+      <if test="accountnumber != null">
+        accountNumber = #{accountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BilltypeId = #{billtypeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bill.system.entity.Billtype">
+    update billtype
+    set BilltypeName = #{billtypename,jdbcType=VARCHAR},
+      addTime = #{addtime,jdbcType=DATE},
+      accountNumber = #{accountnumber,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR}
+    where BilltypeId = #{billtypeid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,27 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: utf-8
+
+spring:
+  datasource:
+    url: jdbc:mysql://123.207.252.249:3306/mysoftware?useSSL=false&characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
+    username: root
+    password: mch1021
+  redis:
+    host: 123.207.252.249
+    port: 6379
+  messages:
+    basename: i81n.login
+  #禁用缓存，一修改就生效，ctrl+F9
+  thymeleaf:
+    cache: false
+  mvc:
+    static-path-pattern: /static/**
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  config-location: classpath:mybatis/mybatis-config.xml
+  type-aliases-package: com.bill.system.entity
+
+

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>成功连接</h1>
+<br>
+<div th:text="${hello}">显示前端页面</div><!-- 转义特殊字符-->
+<div th:utext="${hello}"></div>
+<br>
+<!--3个h3 -->
+<h3 th:each="user:${users}">[[${user}]]</h3> <!-- 转义-->
+<br>
+<h3>
+    <span th:each="user:${users}">[(${user})]</span>
+</h3>
+</body>
+</html>

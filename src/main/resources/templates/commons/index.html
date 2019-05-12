@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Signin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="asserts/css/signin.css" th:href="@{/asserts/css/signin.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <form class="form-signin"  style="margin-top: 100px;width: 400px;margin-left:300px;" method="post" action="/tologin">
+        <h2 class="form-signin-heading" th:text="#{login.top}">Please sign in</h2>
+        <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+        <label  class="sr-only" th:text="#{login.username}">Username</label>
+        <input type="text" id="username" name="username" class="form-control" style="margin-bottom: 20px;" placeholder="Username" th:placeholder="#{login.username}" required autofocus>
+        <label class="sr-only" th:text="#{login.password}">Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Password" style="margin-bottom: 20px;" th:placeholder="#{login.password}" required>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> [[#{login.remmber}]]
+            </label>
+            <label>
+                <a class="btn btn-sm" th:href="@{/templates/commons/index.html(l='zh_CN')}">中文</a>
+                <a  class="btn btn-sm" th:href="@{/templates/commons/index.html(l='en_US')}">English</a>
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.bottom}">Sign in</button>
+    </form>
+
+</div> <!-- /container -->
+</body>
+</html>
