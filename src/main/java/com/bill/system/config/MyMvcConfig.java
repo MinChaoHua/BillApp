@@ -25,7 +25,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
             registry.addViewController("/table-list-img.html").setViewName("table-list-img");
             registry.addViewController("/tables.html").setViewName("tables");
             registry.addViewController("/404.html").setViewName("404");
-            registry.addViewController("/bill-type.html").setViewName("bill-type");
+            registry.addViewController("/bill-setting.html").setViewName("bill-type");
 
         }
         /* 拦截器配置 ,注册拦截器*/

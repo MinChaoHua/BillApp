@@ -21,7 +21,7 @@ public class BillTypeController { // 获取账单类型
     public String getBillType(Map<String, Object> map) {
         List<Billtype> billtypeList = billService.selectBilltype();
         map.put("billtypeList", billtypeList);
-        return "bill/bill-type";
+        return "bill-setting";
     }
 
     //去账单类型设置页面
@@ -29,7 +29,7 @@ public class BillTypeController { // 获取账单类型
     public String toBillTypeSetting(Map<String, Object> map) {
         List<Billtype> billtypeList = billService.selectBilltype();
         map.put("billtypeList", billtypeList);
-        return "bill/bill-type-setting.html";
+        return "bill/bill-type-setting";
     }
 
     //去添加账单类型页面
@@ -37,10 +37,11 @@ public class BillTypeController { // 获取账单类型
     public String toAddBillType() {
         return "bill/add-bill-type";
     }
+
     //添加账单类型
     @ResponseBody
-    @PostMapping(value = "/billType/add",produces = "application/json;charset-utf-8")
-    public Map<String,Object> addBillType( Billtype billtype) {
+    @PostMapping(value = "/billType/add", produces = "application/json;charset-utf-8")
+    public Map<String, Object> addBillType(Billtype billtype) {
         HashMap<String, Object> map = new HashMap<>();
         int billtypeNum = billService.insertBillType(billtype);
         if (billtypeNum > 0) {
@@ -57,29 +58,25 @@ public class BillTypeController { // 获取账单类型
     //删除账单类型
     @ResponseBody
     @DeleteMapping("/billType/delete/{id}")
-    public  Map<String,Object> deleteBillType(@PathVariable("id") int billtypeId){
-        Map<String,Object> map = new HashMap<>();
+    public Map<String, Object> deleteBillType(@PathVariable("id") int billtypeId) {
+        Map<String, Object> map = new HashMap<>();
         int billtypeNum = billService.deleteBillTypeByBillTypeId(billtypeId);
-        if(billtypeNum>0){
-            map.put("result",true);
-            map.put("msg","删除成功");
+        if (billtypeNum > 0) {
+            map.put("result", true);
+            map.put("msg", "删除成功");
 
-        }else{
-            map.put("result",false);
-            map.put("msg","删除失败");
+        } else {
+            map.put("result", false);
+            map.put("msg", "删除失败");
         }
         return map;
     }
+
+    //去账单设置页面，查出账单类型
+    @GetMapping(value = "/bill/toBillSetting")
+    public String toBillSetting(Map<String, Object> map) {
+        List<Billtype> billtypeList = billService.selectBilltype();
+        map.put("billtypeList", billtypeList);
+        return "bill/bill-setting";
+    }
 }
-//
-//    //修改账单类型
-//    @PostMapping(value = "/addBillType")
-//    public String updateBillType(Map<String,Object> map,int billtypeId ,Billtype billtype){
-//        int billtypeNum = billService.updateBillTypeByBillTypeId(billtypeId,billtype);
-//        if(billtypeNum>0){
-//            map.put("true","添加成功");
-//        }else{
-//            map.put("false","添加失败");
-//        }
-//        return "bill/add-bill-type";
-//    }

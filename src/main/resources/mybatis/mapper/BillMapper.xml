@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bill.system.dao.BillMapper" >
+  <resultMap id="BaseResultMap" type="com.bill.system.entity.Bill" >
+    <id column="billId" property="billid" jdbcType="INTEGER" />
+    <result column="billType" property="billtype" jdbcType="VARCHAR" />
+    <result column="accountNumber" property="accountnumber" jdbcType="VARCHAR" />
+    <result column="billDate" property="billdate" jdbcType="DATE" />
+    <result column="totalBill" property="totalbill" jdbcType="INTEGER" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="month" property="month" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    billId, billType, accountNumber, billDate, totalBill, memo, month, year
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bills
+    where billId = #{billid,jdbcType=INTEGER}
+  </select>
+  <select id="selectBillList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bills
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bills
+    where billId = #{billid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bill.system.entity.Bill" >
+    insert into bills (billId, billType, accountNumber, 
+      billDate, totalBill, memo, 
+      month, year)
+    values (#{billid,jdbcType=INTEGER}, #{billtype,jdbcType=VARCHAR}, #{accountnumber,jdbcType=VARCHAR}, 
+      #{billdate,jdbcType=DATE}, #{totalbill,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR}, 
+      #{month,jdbcType=VARCHAR}, #{year,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bill.system.entity.Bill" >
+    insert into bills
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="billid != null" >
+        billId,
+      </if>
+      <if test="billtype != null" >
+        billType,
+      </if>
+      <if test="accountnumber != null" >
+        accountNumber,
+      </if>
+      <if test="billdate != null" >
+        billDate,
+      </if>
+      <if test="totalbill != null" >
+        totalBill,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="billid != null" >
+        #{billid,jdbcType=INTEGER},
+      </if>
+      <if test="billtype != null" >
+        #{billtype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountnumber != null" >
+        #{accountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="billdate != null" >
+        #{billdate,jdbcType=DATE},
+      </if>
+      <if test="totalbill != null" >
+        #{totalbill,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bill.system.entity.Bill" >
+    update bills
+    <set >
+      <if test="billtype != null" >
+        billType = #{billtype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountnumber != null" >
+        accountNumber = #{accountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="billdate != null" >
+        billDate = #{billdate,jdbcType=DATE},
+      </if>
+      <if test="totalbill != null" >
+        totalBill = #{totalbill,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=DATE},
+      </if>
+    </set>
+    where billId = #{billid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bill.system.entity.Bill" >
+    update bills
+    set billType = #{billtype,jdbcType=VARCHAR},
+      accountNumber = #{accountnumber,jdbcType=VARCHAR},
+      billDate = #{billdate,jdbcType=DATE},
+      totalBill = #{totalbill,jdbcType=INTEGER},
+      memo = #{memo,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      year = #{year,jdbcType=DATE}
+    where billId = #{billid,jdbcType=INTEGER}
+  </update>
+</mapper>
