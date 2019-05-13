@@ -18,10 +18,12 @@ spring:
     cache: false
   mvc:
     static-path-pattern: /static/**
+    date-format: yyyy-MM-dd
 
 mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
   config-location: classpath:mybatis/mybatis-config.xml
   type-aliases-package: com.bill.system.entity
+
 
 

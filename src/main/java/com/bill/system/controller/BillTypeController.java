@@ -16,13 +16,13 @@ public class BillTypeController { // 获取账单类型
     @Resource
     BillTypeService billService;
 
-    //查找账单类型
-    @GetMapping(value = "/billType/select")
-    public String getBillType(Map<String, Object> map) {
-        List<Billtype> billtypeList = billService.selectBilltype();
-        map.put("billtypeList", billtypeList);
-        return "bill-setting";
-    }
+//    //查找账单类型,去账单添加页面
+//    @GetMapping(value = "/billType/select")
+//    public String getBillType(Map<String, Object> map) {
+//        List<Billtype> billtypeList = billService.selectBilltype();
+//        map.put("billtypeList", billtypeList);
+//        return "bill/bill-setting";
+//    }
 
     //去账单类型设置页面
     @GetMapping("/billType/Setting")

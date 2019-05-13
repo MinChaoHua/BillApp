@@ -17,7 +17,7 @@ public class Bill {
 
     private String month;
 
-    private Date year;
+    private String year;
 
     public Integer getBillid() {
         return billid;
@@ -75,11 +75,25 @@ public class Bill {
         this.month = month == null ? null : month.trim();
     }
 
-    public Date getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(Date year) {
+    public void setYear(String year) {
         this.year = year;
+    }
+
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "billid=" + billid +
+                ", billtype='" + billtype + '\'' +
+                ", accountnumber='" + accountnumber + '\'' +
+                ", billdate=" + billdate +
+                ", totalbill=" + totalbill +
+                ", memo='" + memo + '\'' +
+                ", month='" + month + '\'' +
+                ", year=" + year +
+                '}';
     }
 }

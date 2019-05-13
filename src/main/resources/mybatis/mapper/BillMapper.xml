@@ -9,7 +9,7 @@
     <result column="totalBill" property="totalbill" jdbcType="INTEGER" />
     <result column="memo" property="memo" jdbcType="VARCHAR" />
     <result column="month" property="month" jdbcType="VARCHAR" />
-    <result column="year" property="year" jdbcType="DATE" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     billId, billType, accountNumber, billDate, totalBill, memo, month, year
@@ -36,7 +36,7 @@
       month, year)
     values (#{billid,jdbcType=INTEGER}, #{billtype,jdbcType=VARCHAR}, #{accountnumber,jdbcType=VARCHAR}, 
       #{billdate,jdbcType=DATE}, #{totalbill,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR}, 
-      #{month,jdbcType=VARCHAR}, #{year,jdbcType=DATE})
+      #{month,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bill.system.entity.Bill" >
     insert into bills
@@ -89,7 +89,7 @@
         #{month,jdbcType=VARCHAR},
       </if>
       <if test="year != null" >
-        #{year,jdbcType=DATE},
+        #{year,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -115,7 +115,7 @@
         month = #{month,jdbcType=VARCHAR},
       </if>
       <if test="year != null" >
-        year = #{year,jdbcType=DATE},
+        year = #{year,jdbcType=VARCHAR},
       </if>
     </set>
     where billId = #{billid,jdbcType=INTEGER}
@@ -128,7 +128,7 @@
       totalBill = #{totalbill,jdbcType=INTEGER},
       memo = #{memo,jdbcType=VARCHAR},
       month = #{month,jdbcType=VARCHAR},
-      year = #{year,jdbcType=DATE}
+      year = #{year,jdbcType=VARCHAR}
     where billId = #{billid,jdbcType=INTEGER}
   </update>
 </mapper>
