@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head >
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amaze UI Admin index Examples</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="/static/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <script src="/static/assets/js/echarts.min.js"></script>
+    <link rel="stylesheet" href="/static/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="/static/assets/css/amazeui.datatables.min.css" />
+    <link rel="stylesheet" href="/static/assets/css/app.css">
+    <script src="/static/assets/js/jquery.min.js"></script>
+
+</head>
+
+<body data-type="widgets">
+<script src="/static/assets/js/theme.js"></script>
+<div class="am-g tpl-g">
+    <!-- 头部 -->
+    <div th:replace="commons/bar::topbar"></div>
+    <!-- 风格切换 -->
+    <div th:replace="commons/bar::theme"></div>
+
+    <!-- 侧边导航栏 -->
+    <div th:replace="commons/bar::#sidebar"></div>
+
+    <!-- 内容区域 -->
+    <div class="tpl-content-wrapper" >
+
+        <div class="row-content am-cf">
+            <div class="row">
+
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12" >
+                    <div class="widget am-cf" >
+                        <div class="widget-head am-cf">
+                            <a th:href=""><div class="widget-title am-fl" style="color: #19a7f0;font-size: large">账单查看</div></a>
+                            <div class="widget-function am-fr">
+                                <a href="javascript:;" class="am-icon-cog"></a>
+                            </div>
+                        </div>
+                        <div class="widget-body am-fr">
+
+                            <form class="am-form tpl-form-border-form">
+                                <div class="am-form-group">
+                                    <label  class="am-u-sm-12 am-form-label am-text-left">账单类型 <span class="tpl-form-line-small-title">Author</span></label>
+                                    <div class="am-u-sm-12  am-margin-top-xs">
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;" >
+                                            <option  th:each="Billtype : ${billtypeList}" th:value="${Billtype.billtypeid}" th:text="${Billtype.billtypename}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label  class="am-u-sm-12 am-form-label am-text-left">记录时间 <span class="tpl-form-line-small-title">Time</span></label>
+                                    <div class="am-u-sm-12">
+                                        <input type="text" class="am-form-field tpl-form-no-bg am-margin-top-xs" placeholder="发布时间" style="width: 40%;" data-am-datepicker="" readonly="">
+                                        <small>发布时间为必填</small>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label  class="am-u-sm-12 am-form-label am-text-left">作者 <span class="tpl-form-line-small-title">Author</span></label>
+                                    <div class="am-u-sm-12  am-margin-top-xs">
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;">
+                                            <option value="a">-The.CC</option>
+                                            <option value="b">夕风色</option>
+                                            <option value="o">Orange</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-12 am-form-label  am-text-left">备注 <span class="tpl-form-line-small-title">memo</span></label>
+                                    <div class="am-u-sm-12">
+                                        <input type="text" class="am-margin-top-xs" placeholder="输入SEO关键字" style="width: 50%;">
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <div class="am-u-sm-12 am-u-sm-push-12">
+                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="/static/assets/js/amazeui.min.js"></script>
+<script src="/static/assets/js/amazeui.datatables.min.js"></script>
+<script src="/static/assets/js/dataTables.responsive.min.js"></script>
+<script src="/static/assets/js/app.js"></script>
+
+<script>
+    // function getAllBillType(){
+    //     $.ajax({
+    //         url: "/selectBillType",
+    //         type: "GET",
+    //         success: function( result ) {
+    //             alert("获取数据成功");
+    //         },
+    //         // dataType: JSON
+    //     });
+    // }
+    // window.onload = getAllBillType;
+
+</script>
+</body>
+
+</html>
