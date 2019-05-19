@@ -1,12 +1,10 @@
 package com.bill.system.controller;
 
 import com.bill.system.entity.Bill;
-import com.bill.system.entity.Billtype;
+import com.bill.system.entity.BriefBill;
 import com.bill.system.service.BillService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -19,10 +17,10 @@ public class BillController {
     @Resource
     BillService billService;
 
-    //查找账单类型
-    @GetMapping(value = "/bill/selectBillList")
-    public String getBillType(Map<String, Object> map) {
-        List<Bill> billList = billService.selectBillList();
+    //查找账单
+    @GetMapping(value = "/bill/selectBillList/{billType}")
+    public String getBillType(@PathVariable("billType") String billtype , Map<String, Object> map) {
+        List<Bill> billList = billService.selectBillListByType(billtype);
         map.put("billList", billList);
         return "bill/billList";
     }
@@ -42,5 +40,22 @@ public class BillController {
         }
         return map;
     }
+
+    //查找账单简略
+    @GetMapping(value = "/bill/selectBillBriefList")
+    public String getBillBrief(Map<String, Object> map) {
+        List<BriefBill> briefBillList = billService.selectBriefBillList();
+        map.put("briefBillList", briefBillList);
+        return "bill/billBriefList";
+    }
+
+    //查找所有账单
+    @GetMapping(value = "/bill/selectAllBillList")
+    public String getAllBillList(Map<String, Object> map) {
+        List<Bill> billList = billService.selectBillListByType(null);
+        map.put("billList", billList);
+        return "bill/allBillList";
+    }
+
 
 }

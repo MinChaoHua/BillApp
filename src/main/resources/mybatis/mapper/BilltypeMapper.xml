@@ -18,12 +18,20 @@
     where BilltypeId = #{billtypeid,jdbcType=INTEGER}
   </select>
 
-  <select id="selectAllBillType"  resultMap="BaseResultMap">
+  <select id="selectAllBillType"  resultMap="BaseResultMap" parameterType="String">
     select
     <include refid="Base_Column_List" />
     from billtype
+    where accountNumber = #{accountnumber,jdbcType=VARCHAR}
   </select>
-
+<!--根据Id查找名称-->
+  <select id="selectBillTypeById"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from billtype
+    where accountNumber = #{accountnumber,jdbcType=VARCHAR}
+    and BilltypeId = #{billtypeid,jdbcType=INTEGER}
+  </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from billtype

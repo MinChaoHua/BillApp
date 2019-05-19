@@ -43,7 +43,7 @@
                         <div class="widget-head am-cf">
                             <div class="widget-function am-cf">
 
-                                <a th:href="@{/bill/selectBillList}">
+                                <a th:href="@{/bill/selectBillBriefList}">
                                     <div class="widget-title am-fl" style="color: #19a7f0;font-size: large">账单查看</div>
                                 </a>
                                 <a href="javascript:;" class="am-icon-cog"></a>
@@ -108,7 +108,7 @@
 
 <script>
     function addBill(){
-        var fromData = $("#form").serialize()
+        var fromData = $("#form").serialize();
         $.ajax({
             url: "/bill/add",
             type: "POST",
@@ -116,7 +116,7 @@
             success: function( data ) {
                 if(data.resultBill==true){
                     alert(data.msg);
-                    window.location.href="/billType/Setting";
+                    window.location.href="/bill/selectBillBriefList";
                 }else{
                     alert(data.msg);
                 }

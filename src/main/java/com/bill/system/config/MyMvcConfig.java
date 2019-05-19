@@ -1,5 +1,6 @@
 package com.bill.system.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -32,7 +33,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         @Override
         public void addInterceptors(InterceptorRegistry registry) {
             registry.addInterceptor(new MyHandlerInterceptor()).addPathPatterns("/**")
-                    .excludePathPatterns("/login","/login.html","/tologin","/static/**");
+                    .excludePathPatterns("/login","/login.html","/toRegister","/tologin","/static/**");
 
         }
 //    /* 视图解析器 */

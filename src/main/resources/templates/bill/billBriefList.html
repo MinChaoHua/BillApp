@@ -46,8 +46,8 @@
                                 </div>
                             </a>
 
-                            <a href="/bill/selectBillBriefList" class="am-icon-cog" style="margin-left: 50px">
-                                <div class="widget-function am-fr"  style="color: #19a7f0;font-size: large">账单简略
+                            <a href="/bill/selectAllBillList" class="am-icon-cog">
+                                <div class="widget-function am-fr"  style="color: #19a7f0;font-size: large;margin-left: 50px;">所有账单
                                 </div>
                             </a>
                         </div>
@@ -58,27 +58,21 @@
                                     <th>账单类型</th>
                                     <th>添加人</th>
                                     <th>金额(元)</th>
-                                    <th>添加时间</th>
-                                    <th>备注</th>
+                                    <th>上次修改时间</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="gradeX" th:each="bill : ${billList}">
-                                    <td th:text="${bill.billtype}"></td>
-                                    <td th:text="${bill.accountnumber}"></td>
-                                    <td th:text="${bill.totalbill}"></td>
-                                    <td th:text="${#dates.format(bill.billdate, 'YYYY-MM-dd')}"></td>
-                                    <td th:text="${bill.memo}"></td>
+                                <tr class="gradeX" th:each="briefBill : ${briefBillList}">
+                                    <td th:text="${briefBill.billtype}"></td>
+                                    <td th:text="${briefBill.accountnumber}"></td>
+                                    <td th:text="${briefBill.totalbill}"></td>
+                                    <td th:text="${#dates.format(briefBill.briefbilldate, 'YYYY-MM-dd HH:mm:ss')}"></td>
                                     <td>
                                         <div class="tpl-table-black-operation">
-                                            <a href="javascript:;">
-                                                <i class="am-icon-pencil"></i> 编辑
+                                            <a  th:href="@{/bill/selectBillList/}+ ${briefBill.billtype}">
+                                                <i class="am-icon-pencil"></i> 明细
                                             </a>
-                                            <a href="javascript:void(0)"  th:onclick="'javascript:billTypeDelete('+${bill.billid}+');'"  class="tpl-table-black-operation-del">
-                                                <i class="am-icon-trash"></i> 删除
-                                            </a>
-
                                         </div>
                                     </td>
                                 </tr>
@@ -86,6 +80,7 @@
                                 <!-- more data -->
                                 </tbody>
                             </table>
+
 
                         </div>
                     </div>

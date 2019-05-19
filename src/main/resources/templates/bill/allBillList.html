@@ -68,7 +68,7 @@
                                     <td th:text="${bill.billtype}"></td>
                                     <td th:text="${bill.accountnumber}"></td>
                                     <td th:text="${bill.totalbill}"></td>
-                                    <td th:text="${#dates.format(bill.billdate, 'YYYY-MM-dd')}"></td>
+                                    <td th:text="${#dates.format(bill.billdate, 'YYYY-MM-dd HH:mm:ss')}"></td>
                                     <td th:text="${bill.memo}"></td>
                                     <td>
                                         <div class="tpl-table-black-operation">
@@ -87,6 +87,44 @@
                                 </tbody>
                             </table>
 
+                            <ul data-am-widget="pagination"
+                                class="am-pagination am-pagination-default"
+                            >
+
+                                <li class="am-pagination-first ">
+                                    <a href="#" class="">第一页</a>
+                                </li>
+
+                                <li class="am-pagination-prev ">
+                                    <a href="#" class="">上一页</a>
+                                </li>
+
+
+                                <li class="am-active">
+                                    <a href="#" class="am-active">1</a>
+                                </li>
+                                <li class="">
+                                    <a href="#" class="am-active">2</a>
+                                </li>
+                                <li class="">
+                                    <a href="#" class="">3</a>
+                                </li>
+                                <li class="">
+                                    <a href="#" class="">4</a>
+                                </li>
+                                <li class="">
+                                    <a href="#" class="">5</a>
+                                </li>
+
+
+                                <li class="am-pagination-next ">
+                                    <a href="#" class="">下一页</a>
+                                </li>
+
+                                <li class="am-pagination-last ">
+                                    <a href="#" class="">最末页</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

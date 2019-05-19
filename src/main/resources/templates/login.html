@@ -37,13 +37,11 @@
                 </div>
             </div>
         </div>
-        <div class="tpl-login">
+        <div class="tpl-login" style="margin-top: -50px">
             <div class="tpl-login-content">
                 <div class="tpl-login-logo">
 
                 </div>
-
-
 
                 <form class="am-form tpl-form-line-form" action="/tologin" method="post">
                     <p  style="color: red" th:text="${msg}"></p>
@@ -66,6 +64,10 @@
                             <a th:href="@{/login.html(l='zh_CN')}">中文</a>
                             <a th:href="@{/login.html(l='en_US')}">English</a>
                         </label>
+
+                        <a th:href="@{/toRegister}">
+                            <label th:text="#{login.sign}">注册</label>
+                        </a>
 
                     </div>
 

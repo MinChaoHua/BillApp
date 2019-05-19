@@ -3,6 +3,7 @@ package com.bill.system.controller;
 import com.bill.system.entity.UserWithBLOBs;
 import com.bill.system.service.LoginService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.thymeleaf.util.StringUtils;
@@ -30,12 +31,18 @@ public class LoginController {
         System.out.println("连接");
         UserWithBLOBs user= loginService.getLonginUser(userWithBLOBs);
         if(user!=null && !StringUtils.isEmpty(user.getAccountnumber())){
-            session.setAttribute("userinfo",user.getNickname());
+            session.setAttribute("userinfo",user.getAccountnumber());
             return "redirect:/index";
         }else{
             map.put("msg","用户名或密码错误");
             return "login";
         }
 
+
+    }
+
+    @GetMapping(value = "/toRegister")
+    public String toRegister(){
+       return "sign-up";
     }
 }

@@ -19,6 +19,8 @@ public class Bill {
 
     private String year;
 
+    private Integer status;
+
     public Integer getBillid() {
         return billid;
     }
@@ -80,7 +82,15 @@ public class Bill {
     }
 
     public void setYear(String year) {
-        this.year = year;
+        this.year = year == null ? null : year.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     @Override
@@ -93,7 +103,8 @@ public class Bill {
                 ", totalbill=" + totalbill +
                 ", memo='" + memo + '\'' +
                 ", month='" + month + '\'' +
-                ", year=" + year +
+                ", year='" + year + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

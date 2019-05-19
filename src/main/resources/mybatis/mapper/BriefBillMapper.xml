@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bill.system.dao.BriefBillMapper" >
+  <resultMap id="BaseResultMap" type="com.bill.system.entity.BriefBill" >
+    <id column="briefBillId" property="briefbillid" jdbcType="INTEGER" />
+    <result column="billType" property="billtype" jdbcType="VARCHAR" />
+    <result column="totalBill" property="totalbill" jdbcType="INTEGER" />
+    <result column="accountNumber" property="accountnumber" jdbcType="VARCHAR" />
+    <result column="briefBillDate" property="briefbilldate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    briefBillId, billType, totalBill, accountNumber, briefBillDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  select
+  <include refid="Base_Column_List" />
+  from briefBill
+  where briefBillId = #{briefBillId,jdbcType=INTEGER}
+</select>
+
+  <select id="selectBriefBillList" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from briefBill
+  </select>
+
+  <!--根据类型，名称查找-->
+<select id="selectBriefBillByTypeAndAccountNumber" resultMap="BaseResultMap" parameterType="String" >
+    select
+    <include refid="Base_Column_List" />
+    from briefBill
+    where accountNumber=  #{accountnumber,jdbcType=VARCHAR}
+    and billType= #{billType,jdbcType=VARCHAR}
+    order by briefBillDate
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from briefBill
+    where briefBillId = #{briefbillid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bill.system.entity.BriefBill" >
+    insert into briefBill (briefBillId, billType, totalBill, 
+      accountNumber, briefBillDate
+      )
+    values (#{briefbillid,jdbcType=INTEGER}, #{billtype,jdbcType=VARCHAR}, #{totalbill,jdbcType=INTEGER}, 
+      #{accountnumber,jdbcType=VARCHAR}, #{briefbilldate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bill.system.entity.BriefBill" >
+    insert into briefBill
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="briefbillid != null" >
+        briefBillId,
+      </if>
+      <if test="billtype != null" >
+        billType,
+      </if>
+      <if test="totalbill != null" >
+        totalBill,
+      </if>
+      <if test="accountnumber != null" >
+        accountNumber,
+      </if>
+      <if test="briefbilldate != null" >
+        briefBillDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="briefbillid != null" >
+        #{briefbillid,jdbcType=INTEGER},
+      </if>
+      <if test="billtype != null" >
+        #{billtype,jdbcType=VARCHAR},
+      </if>
+      <if test="totalbill != null" >
+        #{totalbill,jdbcType=INTEGER},
+      </if>
+      <if test="accountnumber != null" >
+        #{accountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="briefbilldate != null" >
+        #{briefbilldate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bill.system.entity.BriefBill" >
+    update briefBill
+    <set >
+      <if test="billtype != null" >
+        billType = #{billtype,jdbcType=VARCHAR},
+      </if>
+      <if test="totalbill != null" >
+        totalBill = #{totalbill,jdbcType=INTEGER},
+      </if>
+      <if test="accountnumber != null" >
+        accountNumber = #{accountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="briefbilldate != null" >
+        briefBillDate = #{briefbilldate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where briefBillId = #{briefbillid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bill.system.entity.BriefBill" >
+    update briefBill
+    set billType = #{billtype,jdbcType=VARCHAR},
+      totalBill = #{totalbill,jdbcType=INTEGER},
+      accountNumber = #{accountnumber,jdbcType=VARCHAR},
+      briefBillDate = #{briefbilldate,jdbcType=TIMESTAMP}
+    where briefBillId = #{briefbillid,jdbcType=INTEGER}
+    and  accountNumber = #{accountnumber,jdbcType=VARCHAR};
+  </update>
+</mapper>

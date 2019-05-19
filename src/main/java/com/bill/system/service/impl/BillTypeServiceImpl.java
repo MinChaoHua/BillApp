@@ -22,8 +22,14 @@ public class BillTypeServiceImpl implements BillTypeService {
 
     @Override
     public List<Billtype> selectBilltype() {
-        List<Billtype> billtypeList = billtypeMapper.selectAllBillType();
+        List<Billtype> billtypeList = billtypeMapper.selectAllBillType(request.getSession().getAttribute("userinfo").toString());
         return billtypeList;
+    }
+
+    @Override
+    public Billtype selectBillTypeById(Integer billtypeId) {
+        Billtype billtype = billtypeMapper.selectBillTypeById(request.getSession().getAttribute("userinfo").toString(),billtypeId);
+        return billtype;
     }
 
     @Override

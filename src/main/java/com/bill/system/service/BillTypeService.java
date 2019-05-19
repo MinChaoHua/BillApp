@@ -8,6 +8,7 @@ public interface BillTypeService {
     //查找账单类型
     List<Billtype> selectBilltype();
 
+    Billtype selectBillTypeById(Integer billtypeId);
     //添加账单类型
     int insertBillType(Billtype billtype);
 //

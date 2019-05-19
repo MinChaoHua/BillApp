@@ -2,6 +2,7 @@ package com.bill.system.dao;
 
 import com.bill.system.entity.Billtype;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,5 +20,7 @@ public interface BilltypeMapper {
 
     int updateByPrimaryKey(Billtype record);
 
-    List<Billtype> selectAllBillType();
+    List<Billtype> selectAllBillType( String accountnumber);
+
+    Billtype selectBillTypeById(@Param("accountnumber") String accountnumber,@Param("billtypeid") Integer billtypeid);
 }

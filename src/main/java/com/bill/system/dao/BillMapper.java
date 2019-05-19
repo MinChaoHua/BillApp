@@ -2,6 +2,7 @@ package com.bill.system.dao;
 
 import com.bill.system.entity.Bill;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface BillMapper {
 
     int updateByPrimaryKey(Bill record);
 
-    List<Bill> selectBillList();
+    List<Bill> selectBillListByType(@Param("accountNumber") String accountnumber,@Param("billType") String billtypename);
 }
