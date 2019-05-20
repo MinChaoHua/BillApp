@@ -1,7 +1,6 @@
 package com.bill.system.service;
 
 import com.bill.system.entity.Bill;
-import com.bill.system.entity.BriefBill;
 
 import java.util.List;
 
@@ -17,9 +16,9 @@ public interface BillService {
     int updateBillByBillId(int billId,Bill bill);
 
     //删除账单
-    int deleteBillByBillId(int billId);
+    int deleteByPrimaryKey(int billId);
 
     //查询账单简略
 
-    List<BriefBill> selectBriefBillList();
+    List<Bill> selectBriefBillList();
 }

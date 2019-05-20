@@ -64,7 +64,6 @@ public class BillTypeController { // 获取账单类型
         if (billtypeNum > 0) {
             map.put("result", true);
             map.put("msg", "删除成功");
-
         } else {
             map.put("result", false);
             map.put("msg", "删除失败");

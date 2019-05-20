@@ -75,7 +75,7 @@
                                             <a href="javascript:;">
                                                 <i class="am-icon-pencil"></i> 编辑
                                             </a>
-                                            <a href="javascript:void(0)"  th:onclick="'javascript:billTypeDelete('+${bill.billid}+');'"  class="tpl-table-black-operation-del">
+                                            <a href="javascript:void(0)"  th:onclick="'javascript:billDelete('+${bill.billid}+');'"  class="tpl-table-black-operation-del">
                                                 <i class="am-icon-trash"></i> 删除
                                             </a>
 
@@ -139,15 +139,15 @@
 <script src="/static/assets/js/app.js"></script>
 
 <script>
-    function billTypeDelete(id){
+    function billDelete(id){
         $.ajax({
-            url: "/billType/delete/"+id,
+            url: "/bill/delete",
             type: "DELETE",
             data: id,
             success: function( data ) {
                 if(data.result==true){
                     alert(data.msg);
-                    window.location.href="/billType/Setting";
+                    window.location.href="/bill/Setting";
                 }else{
                     alert(data.msg);
                 }

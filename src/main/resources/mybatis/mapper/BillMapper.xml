@@ -21,6 +21,16 @@
     from bills
     where billId = #{billid,jdbcType=VARCHAR}
   </select>
+<!--查询账单简略-->
+  <select id="selectBriefBillList" resultMap="BaseResultMap" >
+    select
+    billId, billType, accountNumber, billDate, memo, month, year, status,
+    sum(totalBill) as totalBill from bills b
+    where b.status=1
+    GROUP BY b.billType  ORDER BY b.billDate;
+  </select>
+
+
   <select id="selectBillListByType" resultMap="BaseResultMap" parameterType="String">
     select
     <include refid="Base_Column_List" />
@@ -36,8 +46,9 @@
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from bills
-    where billId = #{billid,jdbcType=INTEGER}
+  update bills
+   SET  status = 0
+  where billId = #{billid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.bill.system.entity.Bill" >
     insert into bills (billId, billType, accountNumber, 

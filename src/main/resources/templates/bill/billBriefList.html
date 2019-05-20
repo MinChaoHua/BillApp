@@ -67,7 +67,7 @@
                                     <td th:text="${briefBill.billtype}"></td>
                                     <td th:text="${briefBill.accountnumber}"></td>
                                     <td th:text="${briefBill.totalbill}"></td>
-                                    <td th:text="${#dates.format(briefBill.briefbilldate, 'YYYY-MM-dd HH:mm:ss')}"></td>
+                                    <td th:text="${#dates.format(briefBill.billdate, 'YYYY-MM-dd HH:mm:ss')}"></td>
                                     <td>
                                         <div class="tpl-table-black-operation">
                                             <a  th:href="@{/bill/selectBillList/}+ ${briefBill.billtype}">
@@ -112,8 +112,6 @@
             dataType: "JSON"
         });
     }
-
-
 </script>
 </body>
 

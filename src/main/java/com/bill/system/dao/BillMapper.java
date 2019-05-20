@@ -21,4 +21,7 @@ public interface BillMapper {
     int updateByPrimaryKey(Bill record);
 
     List<Bill> selectBillListByType(@Param("accountNumber") String accountnumber,@Param("billType") String billtypename);
+
+    //账单简略
+    List<Bill> selectBriefBillList();
 }

@@ -1,8 +1,8 @@
 package com.bill.system.controller;
 
 import com.bill.system.entity.Bill;
-import com.bill.system.entity.BriefBill;
 import com.bill.system.service.BillService;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,7 +44,7 @@ public class BillController {
     //查找账单简略
     @GetMapping(value = "/bill/selectBillBriefList")
     public String getBillBrief(Map<String, Object> map) {
-        List<BriefBill> briefBillList = billService.selectBriefBillList();
+        List<Bill> briefBillList = billService.selectBriefBillList();
         map.put("briefBillList", briefBillList);
         return "bill/billBriefList";
     }
@@ -57,5 +57,22 @@ public class BillController {
         return "bill/allBillList";
     }
 
+    //删除账单
+    @ResponseBody
+    @DeleteMapping(value = "/bill/delete/{id}", produces = "application/json;charset-utf-8")
+    public Map<String, Object> deleteBillType(@PathVariable("id") int id) {
+        System.out.println("删除");
+        System.out.println("id="+id);
+        Map<String, Object> map = new HashMap<>();
+        int deleteBill = billService.deleteByPrimaryKey(id);
+        if (deleteBill > 0) {
+            map.put("deleteResult", true);
+            map.put("msg", "删除成功");
+        } else {
+            map.put("deleteResult", false);
+            map.put("msg", "删除失败");
+        }
+        return map;
+    }
 
 }
