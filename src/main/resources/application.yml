@@ -19,6 +19,14 @@ spring:
   mvc:
     static-path-pattern: /static/**
     date-format: yyyy-MM-dd
+  mail:
+    default-encoding: utf-8
+    host: smtp.qq.com
+    username: 1778396143@qq.com
+    password: sccifzrhjvjhfieb
+    test-connection: true
+
+
 
 mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml

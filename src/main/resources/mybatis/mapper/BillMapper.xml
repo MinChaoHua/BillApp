@@ -37,6 +37,7 @@
     from bills
     <where>
       accountNumber = #{accountNumber,jdbcType=VARCHAR}
+      and status = 1
       <if test="billType != null">
         and billType = #{billType,jdbcType=VARCHAR}
       </if>
