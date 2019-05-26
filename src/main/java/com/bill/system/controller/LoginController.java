@@ -3,14 +3,13 @@ package com.bill.system.controller;
 import com.bill.system.entity.UserWithBLOBs;
 import com.bill.system.service.LoginService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -44,5 +43,29 @@ public class LoginController {
     @GetMapping(value = "/toRegister")
     public String toRegister(){
        return "sign-up";
+    }
+
+    @ResponseBody
+    @PostMapping(value = "/toSignUp")
+    public Map<String,Object> getSignUp(UserWithBLOBs userWithBLOBs,@RequestParam("code") String code,HttpSession session){
+        Map<String,Object> map = new HashMap<>();
+        System.out.println("code"+code);
+        String  oldcode = (String) session.getAttribute(userWithBLOBs.getEmail());
+        if(!oldcode.equals(code)){
+            map.put("result",false);
+            map.put("msg","验证码错误");
+
+        }else{
+            int insert = loginService.insert(userWithBLOBs);
+            if(insert>0) {
+                map.put("result", true);
+                map.put("msg", "注册成功");
+            }else{
+                map.put("result",false);
+                map.put("msg","注册失败");
+            }
+        }
+        return map;
+
     }
 }

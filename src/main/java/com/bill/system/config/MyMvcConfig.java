@@ -24,16 +24,16 @@ public class MyMvcConfig implements WebMvcConfigurer {
             registry.addViewController("/sign-up.html").setViewName("sign-up");
             registry.addViewController("/table-list.html").setViewName("table-list");
             registry.addViewController("/table-list-img.html").setViewName("table-list-img");
-            registry.addViewController("/tables.html").setViewName("tables");
-            registry.addViewController("/404.html").setViewName("404");
             registry.addViewController("/bill-setting.html").setViewName("bill-type");
+            registry.addViewController("/forgetPassword.html").setViewName("forgetPassword");
 
         }
         /* 拦截器配置 ,注册拦截器*/
         @Override
         public void addInterceptors(InterceptorRegistry registry) {
             registry.addInterceptor(new MyHandlerInterceptor()).addPathPatterns("/**")
-                    .excludePathPatterns("/login","/login.html","/toRegister","/tologin","/static/**");
+                    .excludePathPatterns("/login","/login.html","/toRegister","/tologin","/static/**",
+                            "/forgetPassword.html","/sendCode","/updatePassword","/toSignUp");
 
         }
 //    /* 视图解析器 */

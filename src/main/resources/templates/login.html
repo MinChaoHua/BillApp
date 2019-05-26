@@ -43,15 +43,15 @@
 
                 </div>
 
-                <form class="am-form tpl-form-line-form" action="/tologin" method="post">
-                    <p  style="color: red" th:text="${msg}"></p>
+                <form class="am-form tpl-form-line-form" action="/tologin" method="post" data-am-validator>
+                    <p  style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
                     <div class="am-form-group">
-                        <input type="text" class="tpl-form-input" name="accountnumber" th:placeholder="#{login.username}">
+                        <input type="text" class="tpl-form-input" name="accountnumber" th:placeholder="#{login.username}" required>
 
                     </div>
 
                     <div class="am-form-group">
-                        <input type="password" class="tpl-form-input" name="password" th:placeholder="#{login.password}">
+                        <input type="password" class="tpl-form-input" name="password" th:placeholder="#{login.password}" required>
 
                     </div>
                     <div class="am-form-group tpl-login-remember-me">
@@ -69,12 +69,11 @@
                             <label th:text="#{login.sign}">注册</label>
                         </a>
 
+                        <a th:href="@{/forgetPassword.html}">
+                            <label style="color: #969a9b" th:text="#{login.forgetPassword}">忘记密码</label>
+                        </a>
+
                     </div>
-
-
-
-
-
 
                     <div class="am-form-group">
 

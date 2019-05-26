@@ -36,10 +36,21 @@
     from users
     where accountNumber = #{accountnumber,jdbcType=VARCHAR}
   </select>
+
+  <update id="updatePassword">
+    update users set password = #{password,jdbcType=VARCHAR}
+    where email = #{email,jdbcType=VARCHAR};
+
+  </update>
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from users
     where accountNumber = #{accountnumber,jdbcType=VARCHAR}
   </delete>
+
+
   <update id="updateByPrimaryKeySelective" parameterType="com.bill.system.entity.UserWithBLOBs" >
     update users
     <set >
@@ -134,7 +145,16 @@
     ,
     <include refid="Blob_Column_List" />
     from users
-    where accountNumber = #{accountnumber,jdbcType=VARCHAR}
+    where
+    (accountNumber = #{accountnumber,jdbcType=VARCHAR} or email = #{accountnumber,jdbcType=VARCHAR})
     and password=#{password,jdbcType=VARCHAR};
   </select>
+
+  <insert id="insert" parameterType="com.bill.system.entity.User" >
+    insert into users (accountnumber, email, date,
+      password)
+    values (#{accountnumber,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP},
+      #{password,jdbcType=VARCHAR}
+      )
+  </insert>
 </mapper>

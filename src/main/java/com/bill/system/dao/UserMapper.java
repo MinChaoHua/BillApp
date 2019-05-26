@@ -17,5 +17,9 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
+    int insert(UserWithBLOBs record);
+
     UserWithBLOBs selectLoginUser(@Param("accountnumber") String accountnumber,@Param("password") String password);
+
+    int updatePassword(@Param("password")String password,@Param("email")String eamil);
 }

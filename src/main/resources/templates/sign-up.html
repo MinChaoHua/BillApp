@@ -45,27 +45,29 @@
               </span>
 
 
-                <form class="am-form tpl-form-line-form">
+                <form class="am-form tpl-form-line-form" data-am-validator>
                     <div class="am-form-group">
-                        <input type="text" class="tpl-form-input"  placeholder="邮箱">
-
+                        <input type="text" class="tpl-form-input" name="email" id="email" placeholder="邮箱">
+                        <p  style="color: red"  id="codeMsg"></p>
                         <p>
-                            <input placeholder="输入验证码" class="tpl-form-input"  style="height: 36px;background-color: beige"> <button type="button" class="tpl-login-btn" >获取验证码</button>
-
+                            <input placeholder="输入验证码" class="tpl-form-input" id="code"  style="height: 36px;background-color: beige"> <button type="button" class="tpl-login-btn" id="codeButtom" onclick="getCode()">获取验证码</button>
+                           <div  style="color: red"   id="putCode"></div>
                         </p>
 
                     </div>
 
                     <div class="am-form-group">
-                        <input type="text" class="tpl-form-input" id="user-name" placeholder="用户名">
+                        <input type="text" class="tpl-form-input" id="accountnumber" name="accountnumber" placeholder="用户名" required>
+                        <div  style="color: red"   id="putAccountnumber"></div>
+                    </div>
+                    <div class="am-form-group">
+                        <input type="password" class="tpl-form-input" id="password" name="password" placeholder="请输入六位以上的新密码" pattern="^(\w){6,20}" required >
+                        <div  style="color: red"   id="putPassword"></div>
                     </div>
 
                     <div class="am-form-group">
-                        <input type="password" class="tpl-form-input" id="user-name" placeholder="请输入密码">
-                    </div>
-
-                    <div class="am-form-group">
-                        <input type="password" class="tpl-form-input" id="user-name" placeholder="再次输入密码">
+                        <input type="password" class="tpl-form-input" id="passwordAgain" placeholder="再次输入密码"  data-equal-to="#password" required>
+                        <div  style="color: red"   id="putPasswordAgain"></div>
                     </div>
 
                     <div class="am-form-group tpl-login-remember-me">
@@ -81,9 +83,7 @@
                     </div>
 
                     <div class="am-form-group">
-
-                        <button type="button" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">提交</button>
-
+                        <button type="button" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn" onclick="signUp()">提交</button>
                     </div>
                 </form>
             </div>
@@ -95,3 +95,70 @@
 </body>
 
 </html>
+
+<script>
+    function getCode() {
+        var mail = $("#email").valueOf();
+        var data = $("#email").val();
+        var myreg = /[1-9]\d{7,10}@qq\.com/;
+        console.log(mail);
+        if (!myreg.test(data)) {
+            $("#codeMsg").html('请输入有效的邮箱！');
+            console.log("PLL")
+            return false;
+        }
+        $.ajax({
+            url: "/sendCode",
+            type: "POST",
+            data: mail,
+            dataType: "JSON"
+        });
+        $("#codeMsg").html("验证码已发送，请查收!"+ 60+"s后可重新发送");
+        $("#codeButtom").hide();
+        setTimeout(function () {$("#codeButtom").show();},60000)}
+
+
+
+    function signUp() {
+        var code = $("#code").val();
+        var email = $("#email").val();
+        var accountnumber = $("#accountnumber").val();
+        var password = $("#password").val();
+        var mail = $("#email").val();
+        var myreg = /[1-9]\d{7,10}@qq\.com/;
+
+        if (!myreg.test(mail)) {
+            $("#codeMsg").html('请输入有效的邮箱！');
+            console.log("PLL")
+            return false;
+        }
+        if(code===""||code===null){
+            $("#putCode").html('请输入验证码！！！');
+            return false;
+        }
+        if(accountnumber===""||accountnumber===null){
+            $("#putAccountnumber").html('请输入用户名！！！');
+            return false;
+        }
+        if(password===""||password===null){
+            $("#putPassword").html('请输入密码！！！');
+            return false;
+        }
+
+        var data = {"code": code, "password": password,"accountnumber":accountnumber,"email":email};
+        $.ajax({
+            url: "/toSignUp",
+            type: "POST",
+            data: data,
+            success: function (data) {
+                if (data.result == true) {
+                    alert(data.msg);
+                    window.location.href = "/login";
+                } else {
+                    alert(data.msg);
+                }
+            },
+            dataType: "JSON"
+        });
+    }
+</script>

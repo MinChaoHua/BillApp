@@ -1,5 +1,6 @@
-package com.bill.system.service;
+package com.bill.system.service.impl;
 
+import com.bill.system.service.MailService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 @Service
-public class MailServiceImpl implements MailService{
+public class MailServiceImpl implements MailService {
 
 
     @Resource
