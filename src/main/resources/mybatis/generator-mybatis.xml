@@ -65,7 +65,7 @@
                <!--enableInsert="false"  selectByExampleQueryId="false">-->
         <!--</table>-->
 
-        <table tableName="briefBill" domainObjectName="BriefBill"
+        <table tableName="personphotos" domainObjectName="Photos"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableInsert="true"  selectByExampleQueryId="false">

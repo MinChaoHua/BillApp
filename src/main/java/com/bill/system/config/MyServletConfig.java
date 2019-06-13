@@ -42,7 +42,7 @@ public class MyServletConfig {
 
             @Override
             public void customize(ConfigurableWebServerFactory factory) {
-                factory.setPort(8083);
+                factory.setPort(8080);
             }
         };
     }

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
+    <title>Amaze UI Admin index Examples</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="/static/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <script src="/static/assets/js/jquery.min.js"></script>
+    <script src="/static/assets/js/echarts.min.js"></script>
+    <link rel="stylesheet"  th:href="@{/static/assets/css/amazeui.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/assets/css/amazeui.datatables.min.css}" />
+    <link rel="stylesheet"  th:href="@{/static/assets/css/app.css}">
+
+</head>
+
+<body data-type="index">
+<script src="/static/assets/js/theme.js"></script>
+<div class="am-g tpl-g">
+    <!-- 头部 -->
+    <div th:replace="commons/bar::topbar"></div>
+    <!-- 风格切换 -->
+    <div th:replace="commons/bar::theme"></div>
+
+    <!-- 侧边导航栏 -->
+    <div th:replace="commons/bar::#sidebar(activeUrl='index.html')"></div>
+
+    <!-- 内容区域 -->
+    <div class="tpl-content-wrapper">
+
+        <div class="row-content am-cf">
+            <div class="row  am-cf">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-4" style="width: 80%">
+                    <form  enctype="multipart/form-data" id="from">
+                    <div class="am-form-group am-form-file">
+                        <button type="button" class="am-btn am-btn-danger am-btn-sm" >
+                            <i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
+                        <input  type="file" name="file" multiple id="file">
+                    </div>
+                        <button type="button" class="am-btn am-btn-danger am-btn-sm" onclick="submitPhotos()"> 上传</button>
+                    </form>
+
+                    <div data-am-widget="slider" class="am-slider am-slider-default" style="width: 100%" data-am-slider='{&quot;animation&quot;:&quot;slide&quot;,&quot;controlNav&quot;:&quot;thumbnails&quot;}' >
+                        <ul class="am-slides" th:each="photo : ${photoList}">
+                            <li th:data-thumb="${photo.getPath()}" style="width: 100%">
+                                <img th:src="${photo.getPath()}">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="/static/assets/js/amazeui.min.js"></script>
+<script src="/static/assets/js/amazeui.datatables.min.js"></script>
+<script src="/static/assets/js/dataTables.responsive.min.js"></script>
+<script src="/static/assets/js/app.js"></script>
+<script >
+   function submitPhotos() {
+       $.ajax({
+           url: "/uploadImages",
+           type: "POST",
+           data: new FormData($('#from')[0]),
+           processData: false,
+           contentType: false,
+           success: function (data) {
+               if (data.result === true) {
+                   alert(data.msg);
+                   window.location.href = "/toPhotoWall";
+               } else {
+                   alert(data.msg);
+               }
+           },
+           dataType: "JSON"
+       });
+   }
+
+</script>
+</body>
+
+</html>
