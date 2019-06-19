@@ -40,6 +40,7 @@ public class BillServiceImpl implements BillService {
         //根据账单类型Id查找名称
         Billtype billtype = billtypeMapper.selectBillTypeById(accountNumber,Integer.valueOf(bill.getBilltype()));
         bill.setBilltype(billtype.getBilltypename());
+        bill.setStatus(1);
         //添加账单
         int insertBill = billMapper.insert(bill);
         if(insertBill>0){
