@@ -60,6 +60,12 @@ public class LoginController {
             if(insert>0) {
                 map.put("result", true);
                 map.put("msg", "注册成功");
+            }else if(insert==-1){
+                map.put("result",false);
+                map.put("msg","邮箱已注册");
+            }else if(insert==-2){
+                map.put("result",false);
+                map.put("msg","用户名已存在");
             }else{
                 map.put("result",false);
                 map.put("msg","注册失败");

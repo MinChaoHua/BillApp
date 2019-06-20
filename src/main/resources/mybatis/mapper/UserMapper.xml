@@ -150,6 +150,26 @@
     and password=#{password,jdbcType=VARCHAR};
   </select>
 
+  <select id="selectLByEmail" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from users
+    where
+    email = #{accountnumber,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectLByname" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from users
+    where
+    accountnumber = #{accountnumber,jdbcType=VARCHAR}
+  </select>
+
   <insert id="insert" parameterType="com.bill.system.entity.User" >
     insert into users (accountnumber, email, date,
       password)
