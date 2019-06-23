@@ -60,6 +60,7 @@
                                     <th>金额(元)</th>
                                     <th>添加时间</th>
                                     <th>备注</th>
+                                    <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -67,13 +68,22 @@
                                     <td th:text="${bill.billtype}"></td>
                                     <td th:text="${bill.accountnumber}"></td>
                                     <td th:text="${bill.totalbill}"></td>
-                                    <td th:text="${#dates.format(bill.billdate, 'YYYY-MM-dd HH:mm:ss')}"></td>
+                                    <td th:text="${#dates.format(bill.billdate, 'YYYY-MM-dd')}"></td>
                                     <td th:text="${bill.memo}"></td>
+                                    <td>
+                                        <div class="tpl-table-black-operation">
+                                            <a href="javascript:void(0)"  th:onclick="'javascript:restoreBill('+${bill.billid}+');'"  class="tpl-table-black-operation-del">
+                                                <i class="am-icon-trash"></i> 恢复
+                                            </a>
+
+                                        </div>
+                                    </td>
                                 </tr>
 
                                 <!-- more data -->
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -88,15 +98,14 @@
 <script src="/static/assets/js/app.js"></script>
 
 <script>
-    function billDelete(id){
+    function restoreBill(id){
         $.ajax({
-            url: "/bill/delete",
-            type: "DELETE",
-            data: id,
+            url: "/restoreBill/"+id,
+            type: "post",
             success: function( data ) {
-                if(data.result==true){
+                if(data.restoreBill==true){
                     alert(data.msg);
-                    window.location.href="/bill/Setting";
+                    window.location.href="/bill/selectAllBillList";
                 }else{
                     alert(data.msg);
                 }
@@ -104,6 +113,7 @@
             dataType: "JSON"
         });
     }
+
 
 
 </script>

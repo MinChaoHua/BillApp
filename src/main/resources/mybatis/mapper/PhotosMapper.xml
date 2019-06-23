@@ -6,20 +6,38 @@
     <result column="path" property="path" jdbcType="VARCHAR" />
     <result column="accountNumber" property="accountnumber" jdbcType="VARCHAR" />
     <result column="date" property="date" jdbcType="DATE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, path, accountNumber, date
+    id, path, accountNumber, date,status
   </sql>
   <select id="selectByAccountnumber" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from personphotos
-    where accountNumber = #{accountNumber,jdbcType=INTEGER}
+    where accountNumber = #{accountNumber,jdbcType=INTEGER} and status = 0;
   </select>
+
+  <select id="selectByAccountnumberDelete" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from personphotos
+    where accountNumber = #{accountNumber,jdbcType=INTEGER} and status = 1;
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from personphotos
-    where id = #{id,jdbcType=INTEGER}
+  update personphotos
+   SET  status = 1
+  where id = #{id,jdbcType=INTEGER}
   </delete>
+
+  <delete id="restoreByPrimaryKey" parameterType="java.lang.Integer" >
+  update personphotos
+   SET  status = 0
+  where id = #{id,jdbcType=INTEGER}
+  </delete>
+
   <insert id="insert" parameterType="com.bill.system.entity.Photos" >
     insert into personphotos (id, path, accountNumber, 
       date)

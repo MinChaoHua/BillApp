@@ -9,6 +9,8 @@ import java.util.List;
 public interface PhotosMapper {
     int deleteByPrimaryKey(Integer id);
 
+    int restoreByPrimaryKey(Integer id);
+
     int insert(Photos record);
 
     int insertSelective(Photos record);
@@ -20,4 +22,8 @@ public interface PhotosMapper {
     int updateByPrimaryKey(Photos record);
 
     List<Photos> selectByAccountnumber(String accountnumber);
+
+    List<Photos> selectByAccountnumberDelete(String accountnumber);
+
+
 }

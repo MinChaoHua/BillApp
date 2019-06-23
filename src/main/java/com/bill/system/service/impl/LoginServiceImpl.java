@@ -7,11 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Service
 public class LoginServiceImpl implements LoginService {
 
+    @Resource
+    HttpServletRequest request;
 
     @Resource
     UserMapper userMapper;
@@ -26,7 +29,11 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public int updatePassword(String password, String email) {
-        return  userMapper.updatePassword(password, email);
+        if(email==null){
+            return  userMapper.updatePassword(password, null,request.getSession().getAttribute("userinfo").toString());
+        }else{
+            return  userMapper.updatePassword(password, email,null);
+        }
     }
 
     @Override
@@ -47,5 +54,10 @@ public class LoginServiceImpl implements LoginService {
         }else{
             return -1;
         }
+    }
+
+    @Override
+    public void quitUser() {
+        request.getSession().invalidate();
     }
 }

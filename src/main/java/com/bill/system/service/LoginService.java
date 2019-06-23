@@ -13,4 +13,9 @@ public interface LoginService {
      * 添加用户
      * */
     int insert(UserWithBLOBs userWithBLOBs);
+
+    /**
+     * 退出
+     * */
+    void quitUser();
 }

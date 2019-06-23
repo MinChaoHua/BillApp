@@ -35,6 +35,7 @@ public class MailController {
         return "forgetPassword";
     }
 
+    @SuppressWarnings("Duplicates")
     @ResponseBody
     @PostMapping(value = "/updatePassword")
     public Map<String,Object> signUp(@RequestParam("code")String code,@RequestParam("password")String password, @RequestParam("email")String email,HttpSession session)
@@ -49,7 +50,7 @@ public class MailController {
             //对密码进行 md5 加密
             String md5Password = DigestUtils.md5DigestAsHex(password.getBytes());
             int num = loginService.updatePassword(md5Password, email);
-            System.out.println(md5Password);
+            System.out.println(md5Password+"你好");
             if (num > 0) {
                 map.put("msg", "修改成功");
                 map.put("result", true);

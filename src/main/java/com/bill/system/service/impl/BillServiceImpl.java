@@ -30,6 +30,12 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
+    public List<Bill> selectByAccountnumberDelete() {
+
+        return billMapper.selectByAccountnumberDeleteBill(request.getSession().getAttribute("userinfo").toString());
+    }
+
+    @Override
     public int insertBill(Bill bill) {
         String accountNumber = request.getSession().getAttribute("userinfo").toString();
         Calendar calendar = Calendar.getInstance();
@@ -64,6 +70,11 @@ public class BillServiceImpl implements BillService {
     @Override
     public List<Bill> selectBriefBillList() {
         return  billMapper.selectBriefBillList();
+    }
+
+    @Override
+    public int restoreByPrimaryKey(int id) {
+        return billMapper.restoreByPrimaryKey(id);
     }
 
 }

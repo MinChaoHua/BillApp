@@ -34,4 +34,21 @@ public class ImagesServiceImpl implements ImagesService {
        List<Photos> list =  photoMapper.selectByAccountnumber(request.getSession().getAttribute("userinfo").toString());
         return list;
     }
+
+    @Override
+    public int deletePhoto(int id) {
+        return  photoMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int restoreByPrimaryKey(int id) {
+
+        return  photoMapper.restoreByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Photos> selectByAccountnumberDelete() {
+        List<Photos> photosList = photoMapper.selectByAccountnumberDelete(request.getSession().getAttribute("userinfo").toString());
+        return photosList;
+    }
 }

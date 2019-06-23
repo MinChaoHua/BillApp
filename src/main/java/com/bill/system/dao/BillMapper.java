@@ -24,4 +24,11 @@ public interface BillMapper {
 
     //账单简略
     List<Bill> selectBriefBillList();
+
+    //查找删除的账单
+    List<Bill> selectByAccountnumberDeleteBill( String accountnumber);
+
+    //恢复删除的账单
+    int restoreByPrimaryKey(int id);
+
 }

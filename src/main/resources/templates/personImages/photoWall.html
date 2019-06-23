@@ -33,7 +33,6 @@
 
     <!-- 内容区域 -->
     <div class="tpl-content-wrapper">
-
         <div class="row-content am-cf">
             <div class="row  am-cf">
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-4" style="width: 80%">
@@ -47,9 +46,9 @@
                     </form>
 
                     <div data-am-widget="slider" class="am-slider am-slider-default" style="width: 100%" data-am-slider='{&quot;animation&quot;:&quot;slide&quot;,&quot;controlNav&quot;:&quot;thumbnails&quot;}' >
-                        <ul class="am-slides" th:each="photo : ${photoList}">
-                            <li th:data-thumb="${photo.getPath()}" style="width: 100%">
-                                <img th:src="${photo.getPath()}">
+                        <ul class="am-slides" >
+                            <li th:each="photo : ${photoList}" th:data-thumb="${photo.getPath()}" style="width: 100%">
+                                <img th:src="${photo.getPath()}" >
                             </li>
                         </ul>
                     </div>

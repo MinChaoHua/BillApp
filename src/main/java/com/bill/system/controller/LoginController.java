@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -73,5 +74,11 @@ public class LoginController {
         }
         return map;
 
+    }
+
+    @GetMapping("/quitUser")
+    public String quitUser(){
+        loginService.quitUser();
+        return "login";
     }
 }

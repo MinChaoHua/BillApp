@@ -75,4 +75,33 @@ public class BillController {
         return map;
     }
 
+    /**
+     *
+     * 去删除恢复页面
+     * */
+    @GetMapping("/toRestoreBill")
+    public String toRestoreBill(Map<String,List> map){
+        map.put("billList",billService.selectByAccountnumberDelete());
+        return "bill/restoreBill";
+    }
+
+    /**
+     * 删除恢复
+     * */
+    @ResponseBody
+    @PostMapping(value = "/restoreBill/{id}",produces = "application/json;charset-utf-8")
+    public Map<String,Object>  restoreBill(@PathVariable("id")int id){
+
+        Map<String,Object> map = new HashMap<>();
+        int restorePhoto = billService.restoreByPrimaryKey(id);
+        if (restorePhoto > 0) {
+            map.put("restoreBill", true);
+            map.put("msg", "恢复成功");
+        } else {
+            map.put("restoreBill", false);
+            map.put("msg", "恢复失败");
+        }
+        return map;
+    }
+
 }

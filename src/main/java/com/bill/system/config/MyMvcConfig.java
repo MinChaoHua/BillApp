@@ -21,10 +21,10 @@ public class MyMvcConfig implements WebMvcConfigurer {
             registry.addViewController("/login").setViewName("login");
             registry.addViewController("/calendar.html").setViewName("calendar");
             registry.addViewController("/chart.html").setViewName("chart");
-            registry.addViewController("/form.html").setViewName("form");
+            registry.addViewController("/index.html").setViewName("index");
             registry.addViewController("/sign-up.html").setViewName("sign-up");
             registry.addViewController("/table-list.html").setViewName("table-list");
-            registry.addViewController("/table-list-img.html").setViewName("table-list-img");
+            registry.addViewController("/updatePassword.html").setViewName("updatePassword");
             registry.addViewController("/bill-setting.html").setViewName("bill-type");
             registry.addViewController("/forgetPassword.html").setViewName("forgetPassword");
 
@@ -43,7 +43,13 @@ public class MyMvcConfig implements WebMvcConfigurer {
 //
 //    }
 
-    // 所有的WebMvcConfigurerAdapter组件都会一起起作用
+        //设置虚拟路径的映射
+        @Override
+        public void addResourceHandlers(ResourceHandlerRegistry registry) {
+            registry.addResourceHandler("/static/upload/imgs/**").addResourceLocations("http://123.207.252.249/src/main/resources/static/upload/imgs/");
+        }
+
+        // 所有的WebMvcConfigurerAdapter组件都会一起起作用
     @Bean
     public WebMvcConfigurer webMvcConfigurer() {
         WebMvcConfigurer webMvcConfigurer = new WebMvcConfigurer() {

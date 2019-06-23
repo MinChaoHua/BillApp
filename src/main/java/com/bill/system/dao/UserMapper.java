@@ -21,7 +21,7 @@ public interface UserMapper {
 
     UserWithBLOBs selectLoginUser(@Param("accountnumber") String accountnumber,@Param("password") String password);
 
-    int updatePassword(@Param("password")String password,@Param("email")String eamil);
+    int updatePassword(@Param("password")String password,@Param("email")String eamil,@Param("accountNumber")String accountnumber);
 
     UserWithBLOBs selectLByEmail( String email);
 

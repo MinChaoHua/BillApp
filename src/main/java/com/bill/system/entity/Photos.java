@@ -11,6 +11,8 @@ public class Photos {
 
     private Date date;
 
+    private Integer status;
+
     public Integer getId() {
         return id;
     }
@@ -41,5 +43,13 @@ public class Photos {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }
