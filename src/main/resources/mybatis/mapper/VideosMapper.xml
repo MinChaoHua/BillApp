@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bill.system.dao.VideosMapper" >
+  <resultMap id="BaseResultMap" type="com.bill.system.entity.Videos" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="accoutNumber" property="accoutnumber" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, path, accoutNumber, date, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from video
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.bill.system.entity.Videos" >
+    select
+    <include refid="Base_Column_List" />
+    from video
+    where status = 0
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from video
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bill.system.entity.Videos" >
+    insert into video (id, path, accoutNumber, 
+      date, status)
+    values (#{id,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR}, #{accoutnumber,jdbcType=VARCHAR}, 
+      #{date,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bill.system.entity.Videos" >
+    insert into video
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="accoutnumber != null" >
+        accoutNumber,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="accoutnumber != null" >
+        #{accoutnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bill.system.entity.Videos" >
+    update video
+    <set >
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="accoutnumber != null" >
+        accoutNumber = #{accoutnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bill.system.entity.Videos" >
+    update video
+    set path = #{path,jdbcType=VARCHAR},
+      accoutNumber = #{accoutnumber,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

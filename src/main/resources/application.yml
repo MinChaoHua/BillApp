@@ -20,10 +20,9 @@ spring:
       test-on-borrow: false
       test-on-return: false
       pool-prepared-statements: true
+      validation-query: SELECT 'x'
       filters: stat,wall,log4j
-      max-pool-prepared-statement-per-connection-size: 20
-      use-global-data-source-stat: true
-      connection-properties: druid.stat.mergeSql=true;
+      connection-properties: druid.stat.mergeSql=true
 #      scheam:
 #       -classpath: sql/user.sql
       #validation-query: SELECT
@@ -54,7 +53,11 @@ spring:
           ssl:
             enable: true
     port: 465
-
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      enabled: true
+      max-request-size: 100MB
 
 
 mybatis:
