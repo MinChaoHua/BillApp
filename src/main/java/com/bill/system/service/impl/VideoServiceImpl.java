@@ -3,6 +3,9 @@ package com.bill.system.service.impl;
 import com.bill.system.dao.VideosMapper;
 import com.bill.system.entity.Videos;
 import com.bill.system.service.VideoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -12,6 +15,9 @@ import java.util.List;
 
 @Service
 public class VideoServiceImpl implements VideoService {
+
+    @Autowired
+    RedisTemplate redisTemplate;
 
     @Resource
     private HttpServletRequest request;
@@ -24,11 +30,13 @@ public class VideoServiceImpl implements VideoService {
         videos.setAccoutnumber(request.getSession().getAttribute("userinfo").toString());
         videos.setDate(new Date());
         videos.setPath(path);
+        videos.setStatus(0);
         return  videosMapper.insert(videos);
     }
 
     @Override
     public List<Videos> getListVideos() {
+
         return videosMapper.selectAll();
     }
 }

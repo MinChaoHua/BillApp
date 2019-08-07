@@ -15,7 +15,7 @@ import java.util.List;
 public class ImagesServiceImpl implements ImagesService {
 
     @Resource
-    PhotosMapper photoMapper;
+    private PhotosMapper photoMapper;
 
     @Autowired
     private HttpServletRequest request;
@@ -25,7 +25,6 @@ public class ImagesServiceImpl implements ImagesService {
         photos.setAccountnumber(request.getSession().getAttribute("userinfo").toString());
         photos.setPath(path);
         photos.setDate(new Date());
-
         return photoMapper.insert(photos);
     }
 
@@ -42,7 +41,6 @@ public class ImagesServiceImpl implements ImagesService {
 
     @Override
     public int restoreByPrimaryKey(int id) {
-
         return  photoMapper.restoreByPrimaryKey(id);
     }
 
