@@ -25,7 +25,7 @@ public class DynamicScheduleTask implements SchedulingConfigurer {
                 // 设置触发器，这里是一个拉姆达表达式，传入的TriggerContext类型，返回的是Date类型
                 triggerContext -> {
                     // 2.3 返回执行周期(Date)
-                    return new CronTrigger("*/2 * * * * ?").nextExecutionTime(triggerContext);
+                    return new CronTrigger("0 15 10 17 11 1 2019").nextExecutionTime(triggerContext);
                 });
 
         taskRegistrar.addTriggerTask(triggrtTask);
