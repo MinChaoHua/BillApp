@@ -46,7 +46,15 @@ public class MyMvcConfig implements WebMvcConfigurer {
         //设置虚拟路径的映射
         @Override
         public void addResourceHandlers(ResourceHandlerRegistry registry) {
-            registry.addResourceHandler("/static/upload/imgs/**").addResourceLocations("http://123.207.252.249/src/main/resources/static/upload/imgs/");
+            //无法直接访问 swagger-ui.html，需要做映射
+            registry.addResourceHandler("swagger-ui.html")
+                    .addResourceLocations("classpath:/META-INF/resources/");
+
+            registry.addResourceHandler("docs.html")
+                    .addResourceLocations("classpath:/META-INF/resources/");
+
+            registry.addResourceHandler("/static/upload/imgs/**")
+                    .addResourceLocations("http://123.207.252.249/src/main/resources/static/upload/imgs/");
         }
 
         // 所有的WebMvcConfigurerAdapter组件都会一起起作用

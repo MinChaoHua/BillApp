@@ -2,6 +2,9 @@ package com.bill.system.controller;
 
 import com.bill.system.entity.UserWithBLOBs;
 import com.bill.system.service.LoginService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
@@ -14,10 +17,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+@Api(tags = "用户登录", value = "用户登录")//说明类的作用
 public class LoginController {
 
     @Resource
     LoginService loginService;
+
     @RequestMapping("/successpage")
     public String getSuccess( Map<String,Object> map) {
         System.out.println("你好");
@@ -25,6 +30,8 @@ public class LoginController {
         map.put("users", Arrays.asList("张三","李四","王五"));
         return "success";
     }
+    @ApiOperation(value = "登录",tags = "{登录的实现}")//作用在方法上用来对方法进行说明。主要参数：
+    //value:方法的简要说明，tags:方法的主要功能
     @PostMapping(value = "/tologin")
     public String toLogin(UserWithBLOBs userWithBLOBs,
                           Map<String,Object> map, HttpSession session){
@@ -46,9 +53,10 @@ public class LoginController {
        return "sign-up";
     }
 
+    @ApiOperation(value = "验证码", notes = "查询验证码是否正确")
     @ResponseBody
     @PostMapping(value = "/toSignUp")
-    public Map<String,Object> getSignUp(UserWithBLOBs userWithBLOBs,@RequestParam("code") String code,HttpSession session){
+    public Map<String,Object> getSignUp(UserWithBLOBs userWithBLOBs, @ApiParam(value = "验证码",name = "code")@RequestParam("code") String code, HttpSession session){
         Map<String,Object> map = new HashMap<>();
         System.out.println("code"+code);
         String  oldcode = (String) session.getAttribute(userWithBLOBs.getEmail());

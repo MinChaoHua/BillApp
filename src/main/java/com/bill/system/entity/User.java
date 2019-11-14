@@ -1,16 +1,22 @@
 package com.bill.system.entity;
 
-import java.util.Date;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+import java.util.Date;
+@ApiModel(value = "用户实体类")
 public class User {
+
+    @ApiModelProperty(value = "用户名",required = true)
     private String accountnumber;
 
+    @ApiModelProperty(value = "主键",accessMode = ApiModelProperty.AccessMode.READ_ONLY)
     private Integer id;
 
     private String nickname;
 
     private String name;
-
+    @ApiModelProperty(value = "密码",required = true)
     private String password;
 
     private Integer age;

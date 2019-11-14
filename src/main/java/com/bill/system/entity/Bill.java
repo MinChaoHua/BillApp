@@ -1,7 +1,9 @@
 package com.bill.system.entity;
 
-import java.util.Date;
+import io.swagger.annotations.ApiModel;
 
+import java.util.Date;
+@ApiModel(value = "账单实体类")
 public class Bill {
     private Integer billid;
 

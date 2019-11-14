@@ -1,9 +1,6 @@
-server:
-  port: 8080
-  tomcat:
-    uri-encoding: utf-8
-
 spring:
+  profiles:
+    active: dev
   datasource:
     url: jdbc:mysql://123.207.252.249:3306/mysoftware?useSSL=false&characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
     username: root
@@ -83,3 +80,17 @@ mybatis:
   type-aliases-package: com.bill.system.entity
 logging:
   path: /springboot/log
+---
+server:
+   port: 8084
+spring:
+   profiles: dev
+swagger:
+    enable: true
+---
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: utf-8
+spring:
+   profiles: test

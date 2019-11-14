@@ -9,8 +9,8 @@ import org.springframework.scheduling.config.TriggerTask;
 import org.springframework.scheduling.support.CronTrigger;
 import java.util.Date;
 
-@Configuration
-@EnableScheduling //开启定时
+//@Configuration
+//@EnableScheduling //开启定时
 public class DynamicScheduleTask implements SchedulingConfigurer {
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {

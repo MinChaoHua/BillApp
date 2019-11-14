@@ -1,7 +1,10 @@
 package com.bill.system.entity;
 
+import io.swagger.annotations.ApiModel;
+
 import java.util.Date;
 
+@ApiModel(value = "图片实体类")
 public class Photos {
     private Integer id;
 
